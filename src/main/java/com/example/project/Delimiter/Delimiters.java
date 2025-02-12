@@ -1,5 +1,6 @@
 package com.example.project.Delimiter;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Delimiters {
     /** The open and close delimiters **/
@@ -17,16 +18,40 @@ public class Delimiters {
 
     /** Returns an ArrayList of delimiters from the array tokens, as described in part (a). */
     public ArrayList<String> getDelimitersList(String[] tokens) {
-        /* to be implemented in part (a) */
-        return new ArrayList<String>();
+        ArrayList<String> delimitersList = new ArrayList<String>();
+        for(String token : tokens){
+            if(token.equals(openDel) || token.equals(closeDel)){
+                delimitersList.add(token);
+            }
+        }
+        return delimitersList;
     }
     
 
     /** Returns true if the delimiters are balanced and false otherwise, as described in part (b).
      *  Precondition: delimiters contains only valid open and close delimiters.
      */
-    public boolean isBalanced(String[] delimiters) {
-        /* to be implemented in part (b) */
-        return false;
+    public boolean isBalanced(ArrayList<String> delimiters) {
+        String[] tokens = delimiters.toArray(new String[0]);
+        int openDelCount = 0;
+        int closeDelCount = 0;
+        ArrayList<String> tokensList = getDelimitersList(tokens);
+        for(int i = 0; i < tokensList.size(); i ++){
+            if(tokensList.get(i).equals(openDel)){
+                openDelCount ++;
+            }
+            else{
+                closeDelCount ++;
+            }
+            if(openDelCount < closeDelCount){
+                return false;
+            }
+        }
+        if(openDelCount == closeDelCount){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 }

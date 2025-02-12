@@ -6,7 +6,15 @@ public class WordPairList {
     private ArrayList<WordPair> allPairs;
 
     public WordPairList(String[] words) {
-        /* to be implemented in part (a) */
+        allPairs = new ArrayList<WordPair>();
+        int j = words.length - 1;
+        for(int i = 0; i < words.length - 1; i ++){
+            int k = i + 1;
+            while(k <= j){
+                allPairs.add(new WordPair(words[i], words[k]));
+                k ++;
+            }
+        }
     }
 
     // The method below was added for testing;
@@ -15,10 +23,15 @@ public class WordPairList {
         return allPairs;
     }
 
-    public int numMatches() {
-        /* to be implemented in part (b) */
-        return 0;
-    }
+    public int numMatches(){
+        int matches = 0;
+        for(WordPair pair : allPairs){
+           if(pair.getFirst().equals(pair.getSecond())){  
+              matches ++;
+           }
+        }
+        return matches;
+     }     
 
     // The method below was added for testing;
     // it was not part of the original FRQ
