@@ -6,13 +6,33 @@ public class Utility {
 
     public static ArrayList<Student> sortStudents(ArrayList<Student> list){
         ArrayList<Student> sortedList = new ArrayList<Student>();
-        String[] lastNames = new String[list.size()];
-        String[] firstNames = new String[list.size()];
-        double[] gpas = new double[list.size()];
-        for(int i = 0; i < list.size(); i ++){
-            lastNames[i] = list.get(i).getLastName();
-            firstNames[i] = list.get(i).getFirstName();
-            gpas[i] = list.get(i).getGpa();
+        sortedList.add(list.get(0));
+        int totalStudents = list.size();
+        boolean greatest = false;
+        for(int i = 1; i < totalStudents; i ++){
+            for(int j = 0; j < sortedList.size(); j ++){
+                if(sortedList.get(j).getLastName().compareTo(list.get(i).getLastName()) > 0){
+                    sortedList.add(j, list.get(i));
+                    break;
+                }
+                else if(sortedList.get(j).getLastName().compareTo(list.get(i).getLastName()) == 0){
+                    if(sortedList.get(j).getFirstName().compareTo(list.get(i).getFirstName()) > 0){
+                        sortedList.add(j, list.get(i));
+                    }
+                    else if(sortedList.get(j).getFirstName().compareTo(list.get(i).getFirstName()) < 0){
+                        sortedList.add(j + 1, list.get(i));
+                    }
+                    else{
+                        if(sortedList.get(j).getGpa() > (list.get(i).getGpa())){
+                            sortedList.add(j + 1, list.get(i));
+                        }
+                        else if(sortedList.get(j).getGpa() < (list.get(i).getGpa())){
+                            sortedList.add(j, list.get(i));
+                        } 
+                    }
+                    break;
+                }
+            }
         }
         return sortedList;
     }

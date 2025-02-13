@@ -27,6 +27,7 @@ public class Main {
         Student s10 = new Student("Dean", "Jones", 93.2);
 
         ArrayList<Student> students = new ArrayList<Student>(Arrays.asList(s1, s2, s3, s4, s5, s6, s7, s8, s9, s10));
-        Utility.sortStudents(students);
+        ArrayList<Student> sortedList = Utility.sortStudents(students);
+        System.out.println(sortedList);
     }
 }
